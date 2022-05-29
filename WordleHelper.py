@@ -3,7 +3,8 @@ import re
 
 # This is basically a simple wrapper around a simple regex. But I wanted to play around with the argparse lib
 
-parser = argparse.ArgumentParser(description='Returns a list of words matching the input of known chars (green). Use _ to denote unknowns.')
+parser = argparse.ArgumentParser(description='A simple Wordle helper that looks through the list of all possible words and returns ones matching \
+the pattern to jog your memory or to prove to yourself that yes, really, there are no words starting with UA___')
 parser.add_argument('pattern', type=str, help='The pattern to use. Denote green characters with themselves, yellow with {char}, unknown with _,\n\
 for example: C_{R}NE will return CRANE')
 parser.add_argument('-l', '--limit', type=int, required=False, help='Limit the number of output lines')
