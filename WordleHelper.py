@@ -18,7 +18,7 @@ with open('valid-wordle-words.txt') as file:
     inputPattern = args.pattern.lower()
 
     # Find all the yellow characters
-    knownChars = re.findall(r'.*\{(.)\}.*', inputPattern)
+    knownChars = re.findall(r'.*?\{(.)\}.*?', inputPattern)
 
     # Replace yellow characters in pattern with _ (meaning any characters)
     inputPattern = re.sub(r'\{.\}', '_', inputPattern)
@@ -27,14 +27,14 @@ with open('valid-wordle-words.txt') as file:
     r = re.compile(regexPattern)
     matchingList = list(filter(r.match, lines))
 
-    if (args.limit is not None):
-        matchingList = matchingList[:args.limit]
-
     if (args.contains is not None):
         knownChars = knownChars + list(args.contains)
 
     if (knownChars):
         matchingList = [x for x in matchingList if all(c in x for c in knownChars)]
+
+    if (args.limit is not None):
+        matchingList = matchingList[:args.limit]
 
     for match in matchingList:
         print( match if args.lower else match.upper())
